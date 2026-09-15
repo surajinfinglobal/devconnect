@@ -33,7 +33,7 @@ export default function CTA({ className }) {
       name: "Emily Smith",
       location: "Lyon, France",
       rating: 4.5,
-      text: "The app is intuitive and easy to navigate, and it's helped me reach my financial goals faster than I ever thought possible."
+      text: "DevConnect helped me find a remote frontend role that matched my skills and goals."
     },
     {
       avatar: "https://i.pravatar.cc/64?img=33",
@@ -47,14 +47,14 @@ export default function CTA({ className }) {
       name: "Sarah Jenkins",
       location: "Berlin, DE",
       rating: 5,
-      text: "Absolutely phenomenal tools for wealth management. The visibility into my future spending is crystal clear now."
+      text: "We hired a strong engineering team quickly, with candidates who were genuinely relevant."
     },
     {
       avatar: "https://i.pravatar.cc/64?img=47",
       name: "Emily Smith",
       location: "Lyon, France",
       rating: 4.5,
-      text: "The app is intuitive and easy to navigate, and it's helped me reach my financial goals faster than I ever thought possible."
+      text: "The platform makes it simple to discover real opportunities and connect with great teams."
     }
   ];
 
@@ -64,28 +64,28 @@ export default function CTA({ className }) {
       name: "Wade Warren",
       location: "Michigan, US",
       rating: 4.5,
-      text: "I've finally taken control of my finances. It's so easy to use and has helped me save more money than ever before."
+      text: "I finally found a platform that understands developers and the work they want to do."
     },
     {
       avatar: "https://i.pravatar.cc/64?img=25",
       name: "Jane Cooper",
       location: "Montreal, Canada",
       rating: 5,
-      text: "The app is intuitive and easy to navigate, and it's helped me reach my financial goals faster than I..."
+      text: "Clear profiles and focused matching made our hiring process much faster."
     },
     {
       avatar: "https://i.pravatar.cc/64?img=12",
       name: "Arthur Dent",
       location: "Woking, UK",
       rating: 4.5,
-      text: "A Guide to the Financial Galaxy. This app is exactly what I needed to stop panicking about my savings."
+      text: "The right opportunity was only a few conversations away."
     },
     {
       avatar: "https://i.pravatar.cc/64?img=11",
       name: "Wade Warren",
       location: "Michigan, US",
       rating: 4.5,
-      text: "I've finally taken control of my finances. It's so easy to use and has helped me save more money than ever before."
+      text: "I finally found a platform that understands developers and the work they want to do."
     }
   ];
 
@@ -143,11 +143,11 @@ export default function CTA({ className }) {
             
 
             <h2 className="text-[42px] lg:text-[56px] font-medium leading-[1.1] text-white mb-6 tracking-tight max-w-[400px]">
-              Ready to take control of your finances?
+              Ready to find your next opportunity?
             </h2>
 
             <p className="text-[16px] text-white/50 leading-relaxed mb-8 max-w-[360px]">
-              Join 14,000+ people who are already building better financial habits with Velara.
+              Join thousands of developers and companies building better careers and teams.
             </p>
 
             {/* CTA Buttons */}
@@ -156,13 +156,13 @@ export default function CTA({ className }) {
                 href="#"
                 className="inline-flex items-center justify-center h-[48px] px-6 rounded-full bg-[#A955F7] text-white font-semibold text-[15px] hover:bg-[#9845e6] transition-all duration-300 shadow-[0_0_30px_-8px_rgba(169,85,247,0.5)]"
               >
-                Start Free Trial
+                Create Your Profile
               </a>
               <a
                 href="#"
                 className="inline-flex items-center justify-center h-[48px] px-6 rounded-full bg-white/[0.05] border border-white/10 text-white font-semibold text-[15px] hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300"
               >
-                Book a Demo
+                Find Talent
               </a>
             </div>
 
