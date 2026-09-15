@@ -1,0 +1,493 @@
+@import "tailwindcss";
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+
+  /* ---- SmoothUI / Theme-Red HSL CSS Variables (shadcn format) ---- */
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 346.8 77.2% 49.8%;
+  --primary-foreground: 355.7 100% 99%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 45%;
+  --accent-hsl: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 220 13% 80%;
+  --input: 240 5.9% 90%;
+  --border-hsl: 240 5.9% 90%;
+
+  /* ---- SmoothUI Theme Colors ---- */
+  --color-brand: #e11d48;
+  --color-brand-secondary: #be123c;
+  --color-foreground: #0a0a0a;
+  --color-background: #ffffff;
+  --color-smooth-50: #fafafa;
+  --color-smooth-100: #f4f4f5;
+  --color-smooth-200: #e4e4e7;
+  --color-smooth-300: #d4d4d8;
+  --color-smooth-400: #a1a1aa;
+  --color-smooth-500: #71717a;
+  --color-smooth-600: #52525b;
+  --color-smooth-700: #3f3f46;
+  --color-smooth-800: #27272a;
+  --color-smooth-900: #18181b;
+  --color-smooth-950: #09090b;
+  --color-destructive: #ef4444;
+  --color-blue: #3b82f6;
+  --color-blue-hover: #2563eb;
+  --color-blue-fg: #ffffff;
+  --color-green: #10b981;
+  --color-green-hover: #059669;
+  --color-green-fg: #ffffff;
+  --color-amber: #f59e0b;
+  --color-amber-hover: #d97706;
+  --color-amber-fg: #ffffff;
+
+  /* ---- SmoothUI Tailwind Class Utilities (fallback styles) ---- */
+  --radius: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+
+    /* ---- SmoothUI Dark HSL Variables ---- */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 346.8 77.2% 49.8%;
+    --primary-foreground: 355.7 100% 99%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent-hsl: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 220 13% 70%;
+    --input: 240 3.7% 15.9%;
+    --border-hsl: 240 3.7% 15.9%;
+
+    /* ---- SmoothUI Dark Theme Colors ---- */
+    --color-foreground: #fafafa;
+    --color-background: #09090b;
+    --color-smooth-50: #18181b;
+    --color-smooth-100: #27272a;
+    --color-smooth-200: #3f3f46;
+    --color-smooth-300: #52525b;
+    --color-smooth-400: #71717a;
+    --color-smooth-500: #a1a1aa;
+    --color-smooth-600: #d4d4d8;
+    --color-smooth-700: #e4e4e7;
+    --color-smooth-800: #f4f4f5;
+    --color-smooth-900: #fafafa;
+    --color-smooth-950: #ffffff;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+/* ============================================================
+   SMOOTHUI + SHADCN TAILWIND CLASS FALLBACKS
+   These styles ensure smoothui components look correct even if
+   Tailwind JIT hasn't picked up arbitrary class names.
+   ============================================================ */
+
+@layer components {
+
+/* ---- Background / Foreground color classes ---- */
+.bg-background { background: hsl(var(--background)); }
+.text-foreground { color: hsl(var(--foreground)); }
+.bg-card { background: hsl(var(--card)); color: hsl(var(--card-foreground)); }
+.bg-popover { background: hsl(var(--popover)); color: hsl(var(--popover-foreground)); }
+
+/* ---- Primary / Secondary ---- */
+.bg-primary { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+.bg-primary\/90 { background: hsl(var(--primary) / 0.9); color: hsl(var(--primary-foreground)); }
+.text-primary-foreground { color: hsl(var(--primary-foreground)); }
+.bg-secondary { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); }
+.bg-secondary\/80 { background: hsl(var(--secondary) / 0.8); color: hsl(var(--secondary-foreground)); }
+.text-secondary-foreground { color: hsl(var(--secondary-foreground)); }
+
+/* ---- Muted ---- */
+.bg-muted { background: hsl(var(--muted)); }
+.text-muted-foreground { color: hsl(var(--muted-foreground)); }
+
+/* ---- Accent ---- */
+.text-accent-foreground { color: hsl(var(--accent-foreground)); }
+
+/* ---- Destructive ---- */
+.bg-destructive { background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); }
+.text-destructive { color: hsl(var(--destructive)); }
+
+/* ---- Border / Ring ---- */
+.border-border,
+.border {
+  border-color: hsl(var(--border-hsl));
+}
+.ring-2, .ring-1 {
+  --tw-ring-color: hsl(var(--ring));
+}
+.focus-visible\:ring-2:focus-visible {
+  box-shadow: 0 0 0 2px hsl(var(--ring));
+}
+.focus-visible\:ring-ring:focus-visible {
+  --tw-ring-color: hsl(var(--ring));
+}
+.ring-offset-background {
+  --tw-ring-offset-color: hsl(var(--background));
+}
+
+/* ---- Text Brand (SmoothUI) ---- */
+.text-brand {
+  color: var(--color-brand);
+}
+.text-brand\/10,
+.text-brand\/20,
+.text-brand\/30 {
+  color: color-mix(in oklab, var(--color-brand) 30%, transparent);
+}
+
+/* ---- Brand gradients (SmoothUI candy button) ---- */
+.from-brand { --tw-gradient-from: var(--color-brand); }
+.to-brand-secondary { --tw-gradient-to: var(--color-brand-secondary); }
+.from-brand-secondary { --tw-gradient-from: var(--color-brand-secondary); }
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-from), var(--tw-gradient-to));
+}
+.hover\:from-brand-secondary:hover {
+  --tw-gradient-from: var(--color-brand-secondary);
+}
+.hover\:to-brand-secondary:hover {
+  --tw-gradient-to: var(--color-brand-secondary);
+}
+
+/* ---- SmoothUI layout utility classes ---- */
+.pointer-events-none { pointer-events: none; }
+.pointer-events-auto { pointer-events: auto; }
+.absolute { position: absolute; }
+.relative { position: relative; }
+.fixed { position: fixed; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.z-0 { z-index: 0; }
+.z-10 { z-index: 10; }
+.overflow-hidden { overflow: hidden; }
+.py-36 { padding-top: 9rem; padding-bottom: 9rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.ml-2 { margin-left: 0.5rem; }
+
+/* ---- Flex / Grid helpers ---- */
+.flex { display: flex; }
+.grid { display: grid; }
+.hidden { display: none; }
+.inline-flex { display: inline-flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-end { justify-content: flex-end; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-6 { gap: 1.5rem; }
+.space-y-0 > * + * { margin-top: 0; }
+.space-y-8 > * + * { margin-top: 2rem; }
+
+/* ---- Typography ---- */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.font-bold { font-weight: 700; }
+.font-medium { font-weight: 500; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-5xl { font-size: 3rem; line-height: 1; }
+.leading-none { line-height: 1; }
+.tracking-tight { letter-spacing: -0.025em; }
+.text-pretty { text-wrap: pretty; }
+.underline { text-decoration: underline; }
+.underline-offset-4 { text-underline-offset: 4px; }
+.whitespace-nowrap { white-space: nowrap; }
+
+/* ---- Sizing ---- */
+.h-4 { height: 1rem; }
+.h-9 { height: 2.25rem; }
+.h-10 { height: 2.5rem; }
+.h-11 { height: 2.75rem; }
+.w-10 { width: 2.5rem; }
+.w-full { width: 100%; }
+.max-w-3xl { max-width: 48rem; }
+.max-w-600 { max-width: 600px; }
+
+/* ---- Spacing ---- */
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+.py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+.pl-2 { padding-left: 0.5rem; }
+.rounded-md { border-radius: 0.375rem; }
+.rounded-3xl { border-radius: 1.5rem; }
+.rounded-full { border-radius: 9999px; }
+
+/* ---- Borders ---- */
+.border { border-width: 1px; border-style: solid; }
+.border-\[0\.5px\] { border-width: 0.5px; }
+.border-white\/25 { border-color: rgb(255 255 255 / 0.25); }
+.border-transparent { border-color: transparent; }
+.ring-1 { box-shadow: 0 0 0 1px var(--tw-ring-color, transparent); }
+.ring-foreground\/10 { --tw-ring-color: hsl(var(--foreground) / 0.1); }
+.ring-foreground\/15 { --tw-ring-color: hsl(var(--foreground) / 0.15); }
+
+/* ---- Effects ---- */
+.opacity-50 { opacity: 0.5; }
+.opacity-70 { opacity: 0.7; }
+.shadow-xs { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+.shadow-sm { box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); }
+.shadow-md { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+.shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+.shadow-2xl { box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+.shadow-black\/10 { --tw-shadow-color: rgb(0 0 0 / 0.1); }
+.shadow-black\/15 { --tw-shadow-color: rgb(0 0 0 / 0.15); }
+.shadow-black\/20 { --tw-shadow-color: rgb(0 0 0 / 0.2); }
+.shadow-black\/40 { --tw-shadow-color: rgb(0 0 0 / 0.4); }
+.shadow-zinc-300\/20 { --tw-shadow-color: rgb(161 161 170 / 0.2); }
+.shadow-custom:hover { box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1); }
+.text-shadow-sm { text-shadow: 0 1px 2px rgb(0 0 0 / 0.2); }
+.backdrop-blur-md { backdrop-filter: blur(12px); }
+.bg-blend-luminosity { background-blend-mode: luminosity; }
+.transition { transition: all 0.15s ease; }
+.transition-transform { transition: transform 0.15s ease-out; }
+.duration-150 { transition-duration: 0.15s; }
+.duration-300 { transition-duration: 0.3s; }
+.ease-out { transition-timing-function: ease-out; }
+
+/* ---- Transforms ---- */
+.-translate-x-1\/2 { transform: translateX(-50%); }
+.translate-x-0\.5 { transform: translateX(0.125rem); }
+.scale-\[0\.97\] { transform: scale(0.97); }
+.active\:scale-\[0\.97\]:active { transform: scale(0.97); }
+.group-hover\:translate-x-0\.5:hover .group-hover\:translate-x-0\.5 { transform: translateX(0.125rem); }
+
+/* ---- Cursor / State ---- */
+.cursor-pointer { cursor: pointer; }
+.disabled\:pointer-events-none:disabled { pointer-events: none; }
+.disabled\:opacity-50:disabled { opacity: 0.5; }
+.peer-disabled\:cursor-not-allowed:disabled { cursor: not-allowed; }
+.peer-disabled\:opacity-70:disabled { opacity: 0.7; }
+.outline-none { outline: none; }
+.focus-visible\:outline-hidden:focus-visible { outline: 2px solid transparent; outline-offset: 2px; }
+
+/* ---- SVG ---- */
+.drop-shadow-sm { filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.15)); }
+.size-3\.5 { width: 0.875rem; height: 0.875rem; }
+
+/* ---- Hero-1 specific layout classes ---- */
+.w-fit { width: fit-content; }
+.lg\:w-fit { width: fit-content; }
+.rounded-none { border-radius: 0; }
+.border-transparent { border-color: transparent; }
+.lg\:border-transparent { border-color: transparent; }
+.lg\:m-0 { margin: 0; }
+.lg\:p-0 { padding: 0; }
+.lg\:shadow-none { box-shadow: none; }
+.dark\:shadow-none { box-shadow: none; }
+.dark\:lg\:bg-transparent { background: transparent; }
+.lg\:bg-transparent { background: transparent; }
+.space-y-0 { margin-top: 0; }
+.lg\:gap-6 { gap: 1.5rem; }
+.lg\:space-y-0 > * + * { margin-top: 0; }
+.w-full { width: 100%; }
+.flex-wrap { flex-wrap: wrap; }
+.items-end { align-items: flex-end; }
+
+/* ---- Large screen variants ---- */
+@media (min-width: 1024px) {
+  .lg\:text-5xl { font-size: 3rem; line-height: 1; }
+  .lg\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+  .lg\:flex { display: flex; }
+  .lg\:m-0 { margin: 0; }
+  .lg\:w-fit { width: fit-content; }
+  .lg\:gap-6 { gap: 1.5rem; }
+  .lg\:space-y-0 > * + * { margin-top: 0; }
+  .lg\:border-transparent { border-color: transparent !important; }
+  .lg\:bg-transparent { background-color: transparent !important; }
+  .lg\:p-0 { padding: 0 !important; }
+  .lg\:shadow-none { box-shadow: none !important; }
+  .lg\:flex-nowrap { flex-wrap: nowrap; }
+}
+
+/* ---- Mobile variants ---- */
+@media (min-width: 768px) {
+  .md\:flex-row { flex-direction: row; }
+}
+
+@media (max-width: 768px) {
+  .md\:flex-nowrap { flex-wrap: wrap; }
+}
+
+/* ---- Dark mode variants ---- */
+@media (prefers-color-scheme: dark) {
+  .dark\:ring-foreground\/15 { --tw-ring-color: hsl(var(--foreground) / 0.15); }
+  .dark\:shadow-none { box-shadow: none !important; }
+  .dark\:lg\:bg-transparent { background-color: transparent !important; }
+}
+
+/* ---- Hover / Focus variants for buttons ---- */
+.hover\:shadow:hover { box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); }
+.hover\:bg-background:hover { background: hsl(var(--background)); }
+.hover\:text-foreground:hover { color: hsl(var(--foreground)); }
+.hover\:underline:hover { text-decoration: underline; }
+.hover\:from-brand-secondary:hover { background-image: linear-gradient(to bottom, var(--color-brand-secondary), var(--tw-gradient-to, var(--color-brand))); }
+.hover\:to-brand-secondary:hover { background-image: linear-gradient(to bottom, var(--tw-gradient-from, var(--color-brand)), var(--color-brand-secondary)); }
+
+/* ---- Focus ring for smoothui ---- */
+.ring-offset-2 {
+  --tw-ring-offset-width: 2px;
+  box-shadow: 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color, transparent);
+}
+
+/* ============================================================
+   BODY / ROOT fixes
+   ============================================================ */
+}
+
+body {
+  margin: 0;
+}
+input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+
+/* Shake Animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+
+/* Ensure Tailwind classes from components folder are picked */
+@source "../components/**/*.{tsx,ts,jsx,js}";
+@source "../src/**/*.{tsx,ts,jsx,js,html}";
+
