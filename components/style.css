@@ -118,7 +118,7 @@
     padding: 1rem 0;
     
     /* Glass mobile menu */
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);

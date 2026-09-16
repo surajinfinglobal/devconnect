@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+// import { useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Form, {
   FormField,
   FormLabel,
@@ -13,6 +15,8 @@ function Login() {
     email: "",
     password: "",
   });
+  const location = useLocation(); 
+  
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState("");
   const [shake, setShake] = useState(false);
@@ -63,7 +67,12 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        navigate("/dashboard");
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        const redirectTo =
+        location.state?.from || "/";
+        navigate(location.state?.from || "/", { replace: true });
       } else {
         setServerError(data.message || "Invalid email or password");
       }
@@ -221,12 +230,12 @@ const styles = {
     color: "#9ca3af",
   },
   label: {
-  display: "block",
-  textAlign: "left",
-  marginBottom: "6px",
-  color: "#9ca3af",
-  fontSize: "14px",
-},
+    display: "block",
+    textAlign: "left",
+    marginBottom: "6px",
+    color: "#9ca3af",
+    fontSize: "14px",
+  },
   button: {
     width: "100%",
     padding: "13px",
