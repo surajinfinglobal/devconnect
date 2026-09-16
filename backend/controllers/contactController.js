@@ -1,70 +1,76 @@
-const db = require("../config/db");
+const supabase = require("../config/supabase");
 
-exports.submitContact = (req,res)=>{
-    console.log("CONTACT API HIT");
-    console.log("Contact API hit");
-    console.log(req.body);
-    const{
-        firstName,
-        lastName,
-        email,
-        phone,
-        plan,
-        location,
-        date
-    }= req.body;
+exports.submitContact = async (req, res) => {
+    try {
 
-    if(
-        !firstName ||
-        !lastName ||
-        !email ||
-        !phone ||
-        !plan ||
-        !location ||
-        !date
-    ){
-        return res.status(400).json({
-            success: false,
-            message:"all feild are required"
-        });
-    }
+        console.log("CONTACT DATA:", req.body);
 
-    const sql = `
-        INSERT INTO contact_messages
-        (
-            first_name,
-            last_name,
+        const {
+            firstName,
+            lastName,
             email,
             phone,
             plan,
             location,
-            preferred_date
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    `;
+            date
+        } = req.body;
 
-    const values = [
-        firstName,
-        lastName,
-        email,
-        phone,
-        plan,
-        location,
-        date
-    ];
-
-    db.query(sql,values,(err,result)=>{
-        if(err){
-            console.log("conatct insert error",err);
-            return res.status(500).json({
-             success: false,
-             message: "Failed to save contact message"
+        if (
+            !firstName ||
+            !lastName ||
+            !email ||
+            !phone ||
+            !plan ||
+            !location ||
+            !date
+        ) {
+            return res.status(400).json({
+                success: false,
+                message: "All fields are required"
             });
         }
+
+        const { data, error } = await supabase
+            .from("contact_messages")
+            .insert([
+                {
+                    first_name: firstName,
+                    last_name: lastName,
+                    email: email,
+                    phone: phone,
+                    plan: plan,
+                    location: location,
+                    preferred_date: date
+                }
+            ])
+            .select()
+            .single();
+
+        if (error) {
+
+            console.error("Supabase contact error:", error);
+
+            return res.status(500).json({
+                success: false,
+                message: "Failed to save contact message",
+                error: error.message
+            });
+        }
+
         return res.status(201).json({
             success: true,
-            message: "Message sent successfully"
+            message: "Message sent successfully",
+            data
         });
-    })
 
-}
+    } catch (error) {
+
+        console.error("Contact controller error:", error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Something went wrong",
+            error: error.message
+        });
+    }
+};

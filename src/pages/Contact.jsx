@@ -55,8 +55,7 @@ function Contact() {
     setSuccess(true);
     // Backend API call
     try {
-        const response = await fetch(
-            `${import.meta.env.VITE_API_URL}/api/contact`,
+        const response = await fetch("/api/contact", 
             {
                 method: "POST",
                 headers: {

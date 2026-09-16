@@ -9,7 +9,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="logo">
-          Devconnect
+          Devconnect from testing
         </Link>
 
         <div className={`nav-links ${isOpen ? "active" : ""}`}>

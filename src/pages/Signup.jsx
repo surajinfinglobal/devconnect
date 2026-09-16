@@ -18,6 +18,7 @@ function Signup() {
   const [serverError, setServerError] = useState("");
   const [shake, setShake] = useState(false);
   const [showPassword, setShowPassword] = useState(false); // ← toggle
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,14 +58,18 @@ function Signup() {
     e.preventDefault();
     setServerError("");
 
+    if (isSubmitting) return;
+
     if (!validate()) {
       setShake(true);
       setTimeout(() => setShake(false), 500);
       return;
     }
 
+    setIsSubmitting(true);
+
     try {
-      const response = await fetch("http://localhost:5000/api/auth/signup", {
+      const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -76,11 +81,13 @@ function Signup() {
         alert("Signup successful! Please login.");
         navigate("/login");
       } else {
-        setServerError(data.message);
+        setServerError(data.message || "Signup failed. Please try again.");
       }
     } catch (error) {
       console.error(error);
       setServerError("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -169,8 +176,8 @@ function Signup() {
             <FormMessage />
           </FormField>
 
-          <button type="submit" style={styles.button}>
-            Create Account
+          <button type="submit" style={{ ...styles.button, opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? "not-allowed" : "pointer" }} disabled={isSubmitting}>
+            {isSubmitting ? "Creating account..." : "Create Account"}
           </button>
         </Form>
 
