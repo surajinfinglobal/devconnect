@@ -1,7 +1,6 @@
 import { useState } from "react";
-// import { useLocation, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import Form, {
   FormField,
   FormLabel,
@@ -11,11 +10,12 @@ import Form, {
 
 function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const location = useLocation(); 
+  const location = useLocation();
   
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState("");
@@ -67,11 +67,7 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-
-        const redirectTo =
-        location.state?.from || "/";
+        login(data.token, data.user);
         navigate(location.state?.from || "/", { replace: true });
       } else {
         setServerError(data.message || "Invalid email or password");
