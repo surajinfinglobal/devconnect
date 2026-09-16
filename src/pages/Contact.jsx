@@ -10,6 +10,7 @@ function Contact() {
     location: "",
     date: "",
   });
+  
 //   const items = [
 //   { id: 1, label: "Small" },
 //   { id: 2, label: "Medium" },
@@ -29,7 +30,18 @@ function Contact() {
   };
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+    const token = localStorage.getItem("token");
+    if (!token) {
+        navigate("/login", {
+            state: {
+                from: "/contact"
+            }
+        });
+
+        return;
+    }
     setSuccess(false);
     
     
@@ -60,6 +72,7 @@ function Contact() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                     "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(formData),
             }

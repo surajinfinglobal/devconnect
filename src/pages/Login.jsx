@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import Form, {
   FormField,
   FormLabel,
@@ -9,10 +10,13 @@ import Form, {
 
 function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const location = useLocation();
+  
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState("");
   const [shake, setShake] = useState(false);
@@ -63,7 +67,8 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        navigate("/dashboard");
+        login(data.token, data.user);
+        navigate(location.state?.from || "/", { replace: true });
       } else {
         setServerError(data.message || "Invalid email or password");
       }
@@ -221,12 +226,12 @@ const styles = {
     color: "#9ca3af",
   },
   label: {
-  display: "block",
-  textAlign: "left",
-  marginBottom: "6px",
-  color: "#9ca3af",
-  fontSize: "14px",
-},
+    display: "block",
+    textAlign: "left",
+    marginBottom: "6px",
+    color: "#9ca3af",
+    fontSize: "14px",
+  },
   button: {
     width: "100%",
     padding: "13px",

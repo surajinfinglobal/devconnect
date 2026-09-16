@@ -69,13 +69,23 @@ function Signup() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+     const response = await fetch("/api/auth/signup", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(formData)
+});
 
-      const data = await response.json();
+     const text = await response.text();
+     let data = {};
+     try {
+    data = text ? JSON.parse(text) : {};
+} catch {
+    data = {
+        message: text || "Server returned an invalid response"
+    };
+}
 
       if (response.ok) {
         alert("Signup successful! Please login.");
