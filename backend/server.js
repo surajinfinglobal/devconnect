@@ -18,52 +18,6 @@ app.get("/", (req, res) => {
         message: "Backend API is working"
     });
 });
-// const PORT = process.env.PORT || 5000;
 
-// if (require.main === module) {
-//     const PORT = process.env.PORT || 5000;
-
-//     app.listen(PORT, () => {
-//         console.log(`Server running on http://localhost:${PORT}`);
-//     });
-// }
-// app.get("/api/test-supabase", async (req, res) => {
-//      try {
-//         const supabase = require("./config/supabase");
-
-//         const { data, error } = await supabase
-//             .from("contact_messages")
-//             .select("id")
-//             .limit(1);
-
-//         if (error) {
-//             console.error("❌ SUPABASE ERROR:", error);
-
-//             return res.status(500).json({
-//                 success: false,
-//                 supabaseConnected: false,
-//                 message: error.message
-//             });
-//         }
-
-//         console.log("✅ SUPABASE CONNECTED");
-
-//         return res.json({
-//             success: true,
-//             supabaseConnected: true,
-//             message: "Supabase connected successfully",
-//             data
-//         });
-
-//     } catch (error) {
-//         console.error("❌ SUPABASE CONNECTION ERROR:", error);
-
-//         return res.status(500).json({
-//             success: false,
-//             supabaseConnected: false,
-//             message: error.message
-//         });
-//     }
-// });
 
 module.exports = app;
