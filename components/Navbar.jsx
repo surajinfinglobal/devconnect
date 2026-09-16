@@ -18,6 +18,18 @@ function Navbar() {
 
     navigate("/");
   };
+  const styles = {
+  // tumhare existing styles...
+
+  logoutBtn: {
+    padding: "8px 16px",
+    border: "none",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontSize: "14px",
+    fontWeight: "500",
+  },
+};
   return (
     <nav className="navbar">
       <div className="nav-container">
